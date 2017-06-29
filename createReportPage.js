@@ -23,29 +23,45 @@ var wrapper2 = '#wrapper2 {' +
     'margin-right: auto;	}';
 	
 var td = 'td {' +
-    'position: relative;' +
-    'width: 72px;' +
     'padding: 4px;' +
-	'border: 1px solid #9c2020;' +
 	'margin-left: auto;' +
     'margin-right: auto;	}';
 
 var wrapper3 = '#wrapper3 {' +
-    'width: 12px;' +
-    'height: 12px;' +
     'margin: 2px;' +
-	'position: relative;' +
 	'border: 1px solid #827979;' +
     'display: inline-block;' +
-	'background : #827979;' +
-    'font-size: 6px; }';
+	'background : #aea5a5;' +
+    'min-width: 20px;' +
+    'text-align: center; ' +
+    'padding: 5px;' +
+    'border-radius: 5px;' +
+    'box-shadow: 2px 2px 2px #333c4e;}';
+	
+var container = '#container {' +
+    'max-width: 800px;' +
+	'width: 100%;' +
+    'margin: 50px auto 20px auto; }';
+	
+var results = '#results {' +
+    'max-width: 800px;' +
+    'margin: 0px auto 100px auto;' +
+    'padding-top: 30px;' +
+	'border-top: 1px solid grey; }';
+
+var logo = '.logo {' +
+    'width: 50px;' +
+    'height: 50px; }';
 
 var style = document.createElement('style');
 style.append(wrapper);
 style.append(content);
 style.append(wrapper2);
 style.append(wrapper3);
-//style.append(td);
+style.append(td);
+style.append(container);
+style.append(results);
+style.append(logo);
 document.body.appendChild(style);
 
 
@@ -66,7 +82,7 @@ var containerTD = document.createElement('td');
 containerTR.appendChild(containerTD);
 
 //add Headers 
-var intro = ['Chrome','Firefox','Edge'];
+var intro = ['Chrome','Firefox','Edge', 'Nightly'];
 intro.forEach(addHeaders);
 
 //add Lines
@@ -216,23 +232,28 @@ processResult(inputs);
 
 
 
-function addHeaders(item, index) {
+function addHeaders(item) {
 
 	var newColumn = document.createElement('th');
-    var tex = document.createTextNode(item);
-	newColumn.appendChild(tex);
+
+    var img = document.createElement('img');
+    img.setAttribute('src', 'images/'+item.toLowerCase()+'.png');
+    img.setAttribute('class', 'logo');
+    newColumn.appendChild(img);
 
 	var headerLine = document.getElementById('headers');
 	headerLine.appendChild(newColumn);	
 }
 
-function addLineHeaders(item, index) {
+function addLineHeaders(item) {
 
 	var newLine = document.createElement('tr');
 	newLine.id = item;
 	var newColumn = document.createElement('td');
-    var tex = document.createTextNode(item);
-	newColumn.appendChild(tex);
+    var img = document.createElement('img');
+    img.setAttribute('src', 'images/'+item.toLowerCase()+'.png');
+    img.setAttribute('class', 'logo');
+    newColumn.appendChild(img);
 
 	newLine.appendChild(newColumn);
 	
@@ -262,9 +283,17 @@ function myFunction(item) {
         tagID = split[0].substring(0,1).toLowerCase() + '-' + split[1].substring(0,1).toLowerCase();
         setId(tagID);
 
+        var name;
+        if(item.name.indexOf(',') != -1) {
+            name = item.name.substring(item.name.indexOf(',') + 1);
+        }
+        else {
+            name = '-';
+        }
+
         currentDIV = document.getElementById( id + '-container');
 
-        newContent = document.createTextNode(item.name);
+        newContent = document.createTextNode(name);
         childDiv.appendChild(newContent);
         childDiv.id = 'wrapper3';
         currentDIV.appendChild(childDiv);
