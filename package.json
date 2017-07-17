@@ -9,7 +9,7 @@
     "selenium-webdriver": "3.3.0"
   },
   "scripts": {
-    "start": "node video.js"
+    "start": "node apprtcTestReports.js"
   },
   "devDependencies": {
     "sdp": "^1.5.0",

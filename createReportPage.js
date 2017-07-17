@@ -37,7 +37,7 @@ var wrapper3 = '#wrapper3 {' +
     'padding: 5px;' +
     'border-radius: 5px;' +
     'box-shadow: 2px 2px 2px #333c4e;}';
-	
+
 var container = '#container {' +
     'max-width: 800px;' +
 	'width: 100%;' +
@@ -209,6 +209,11 @@ var Input018 = {
     'id':0,
     'type':'test'
 };
+var Input019 = {
+    'name':'Nightly-Nightly, VP8',
+    'id':0,
+    'type':'test'
+};
 
 var inputs = {};
 inputs['Chrome-Chrome'] = [Input01, Input, Input2, Input3, Input4, Input5];
@@ -227,6 +232,7 @@ inputs['Chrome-Edge, VP9'] = [Input031, Input5, Input2];
 inputs['Firefox-Edge, VP9'] = [Input016, Input5, Input2];
 inputs['Firefox-Chrome, VP941231'] = [Input017, Input5, Input2];
 inputs['Firefox-Edge, VP8'] = [Input018, Input5, Input2];
+inputs['Nightly-Nightly, VP8'] = [Input019];
 
 processResult(inputs);
 
@@ -261,6 +267,10 @@ function addLineHeaders(item) {
 	table.appendChild(newLine);	
 }
 
+var nameAttr = '';
+function setnameAttr(value){
+    nameAttr = value;
+}
 
 function myFunction(item) {
 
@@ -268,7 +278,8 @@ function myFunction(item) {
     var split;
     var tagID;
     var resultChildContainerDiv = document.getElementById( id + '-result');
-    var resultChilDiv;
+
+    var resultChildDiv;
     var newContent;
 
     var currentDIV = document.getElementById( id + '-container');
@@ -286,16 +297,25 @@ function myFunction(item) {
         var name;
         if(item.name.indexOf(',') != -1) {
             name = item.name.substring(item.name.indexOf(',') + 1);
-        }
-        else {
+        }else {
             name = '-';
         }
-
+        setnameAttr(name);
         currentDIV = document.getElementById( id + '-container');
 
         newContent = document.createTextNode(name);
         childDiv.appendChild(newContent);
+        if(name == '-'){
+            childDiv.setAttribute('name', id);
+        }else{
+            childDiv.setAttribute('name', name);
+        }
+
         childDiv.id = 'wrapper3';
+
+        //onClick
+        //childDiv.addEventListener("click", displayElement(name));
+
         currentDIV.appendChild(childDiv);
         return;
     }else {
@@ -305,19 +325,29 @@ function myFunction(item) {
             resultDivs.appendChild(resultChildContainerDiv);
         }
 
-        resultChilDiv  = document.createElement('div');
+        var testCaseContainerDiv =  document.getElementById( nameAttr + '-tcstep-' + id);
+        if(testCaseContainerDiv == null){
+            testCaseContainerDiv = document.createElement('div');
+            testCaseContainerDiv.id = ( nameAttr + '-tcstep-' + id);
+            testCaseContainerDiv.setAttribute('name', nameAttr + '-tcstep');
+            testCaseContainerDiv.style.display = 'none';
+            resultChildContainerDiv.appendChild(testCaseContainerDiv);
+        }
+
+        resultChildDiv  = document.createElement('div');
         newContent = document.createTextNode(item.name);
         if (item.action == 'pass') {
-            resultChilDiv.style.backgroundColor = 'green';
+            resultChildDiv.style.backgroundColor = 'green';
         } else {
-            resultChilDiv.style.backgroundColor = 'red';
+            resultChildDiv.style.backgroundColor = 'red';
         }
-        resultChilDiv.id = 'wrapper3';
-        resultChilDiv.appendChild(newContent);
-        resultChildContainerDiv.appendChild(resultChilDiv);
+        resultChildDiv.id = 'wrapper3';
+        resultChildDiv.appendChild(newContent);
+        testCaseContainerDiv.appendChild(resultChildDiv);
     }
 
 }
+
 
 var id;
 function setId(value){
@@ -329,6 +359,12 @@ function processResult(list){
     for ( k in Object.keys(list)) {
         list[Object.keys(list)[k]].forEach(myFunction);
     }
+}
+
+function displayElement(elementId){
+    var divToDisplay = document.getElementById(elementId + '-tcstep-' + id);
+
+    divToDisplay.style.display = 'inline';
 }
 
 function addMatrixColumns(broswers){
