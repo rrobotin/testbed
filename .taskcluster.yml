@@ -7,6 +7,13 @@ metadata:
 tasks:
   - provisionerId: '{{ taskcluster.docker.provisionerId }}'
     workerType: '{{ taskcluster.docker.workerType }}'
+    created: (new Date()).toJSON()
+    deadline: '{{ '2 hours' | $fromNow }}'
+    expires: '{{ '20 days' | $fromNow }}'
+    priority: low
+    retries: 5
+    routes:
+          - 'notify.email.<roxana.robotin@softvision.ro>.on-any'
     extra:
       github:
         events:
@@ -16,16 +23,24 @@ tasks:
     payload:
       maxRunTime: 3600
       image: node
+      env: {
+             "NIGHTLY": "PATH TO Nightly"
+           }
       command:
         - /bin/bash
         - '--login'
         - '-c'
         - >-
-          git clone {{event.head.repo.url}} repo && cd repo && git config
-          advice.detachedHead false && git checkout {{event.head.sha}} && npm
-          install . && node apprtcTestReports.js
+          git clone {{event.head.repo.url}} repo &&
+          cd repo &&
+          git config advice.detachedHead false &&
+          git checkout {{event.head.sha}} &&
+          npm install . &&
+          cd &&
+          wget https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-56.0a1.en-US.linux-x86_64.tar.bz2
+          node apprtcTestReports.js
     metadata:
-      name: ''
-      description: ''
+      name: 'testBed'
+      description: 'Automated video/audio tests '
       owner: '{{ event.head.user.email }}'
       source: '{{ event.head.repo.url }}'
