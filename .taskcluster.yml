@@ -7,7 +7,6 @@ metadata:
 tasks:
   - provisionerId: '{{ taskcluster.docker.provisionerId }}'
     workerType: '{{ taskcluster.docker.workerType }}'
-    created: (new Date()).toJSON()
     priority: low
     retries: 5
     routes:
