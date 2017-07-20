@@ -8,9 +8,12 @@ tasks:
   - provisionerId: '{{ taskcluster.docker.provisionerId }}'
     workerType: '{{ taskcluster.docker.workerType }}'
     created: (new Date()).toJSON()
-    deadline: '{{ '2 hours' | $fromNow }}'
-#    routes:
-#           - 'notify.email.<roxana.robotin@softvision.ro>.on-any'
+    deadline: { 2 hours | $fromNow }
+    expires: { 20 days | $fromNow }
+    priority: low
+    retries: 5
+    routes:
+           - 'notify.email.<roxana.robotin@softvision.ro>.on-any'
 
     extra:
       github:
@@ -21,9 +24,8 @@ tasks:
     payload:
       maxRunTime: 3600
       image: node
-      env: {
-             "NIGHTLY": "PATH TO Nightly"
-           }
+      env:
+           - 'NIGHTLY': 'PATH TO Nightly'
       command:
         - /bin/bash
         - '--login'
