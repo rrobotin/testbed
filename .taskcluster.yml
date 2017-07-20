@@ -8,8 +8,6 @@ tasks:
   - provisionerId: '{{ taskcluster.docker.provisionerId }}'
     workerType: '{{ taskcluster.docker.workerType }}'
     created: (new Date()).toJSON()
-    deadline: '2 hours | $fromNow'
-    expires: '20 days | $fromNow'
     priority: low
     retries: 5
     routes:
