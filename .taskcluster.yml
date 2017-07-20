@@ -9,8 +9,9 @@ tasks:
     workerType: '{{ taskcluster.docker.workerType }}'
     created: (new Date()).toJSON()
     deadline: '{{ '2 hours' | $fromNow }}'
-    routes:
-          - 'notify.email.<roxana.robotin@softvision.ro>.on-any'
+    routes: [
+                'notify.email.<roxana.robotin@softvision.ro>.on-any'
+            ]
     extra:
       github:
         events:
