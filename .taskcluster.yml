@@ -7,7 +7,7 @@ metadata:
 tasks:
   - provisionerId: '{{ taskcluster.docker.provisionerId }}'
     workerType: '{{ taskcluster.docker.workerType }}'
-    priority: low
+    priority: lowest
     retries: 5
     routes:
            - 'notify.email.<roxana.robotin@softvision.ro>.on-any'
