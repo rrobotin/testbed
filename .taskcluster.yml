@@ -9,7 +9,6 @@ tasks:
     workerType: '{{ taskcluster.docker.workerType }}'
     created: (new Date()).toJSON()
     deadline: '{{ '2 hours' | $fromNow }}'
-    priority: 'low'
     retries: 5
     routes:
           - 'notify.email.<roxana.robotin@softvision.ro>.on-any'
