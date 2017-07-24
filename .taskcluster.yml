@@ -21,7 +21,7 @@ tasks:
       maxRunTime: 3600
       image: node
       env:
-           - 'NIGHTLY': 'PATH TO Nightly'
+           NIGHTLY: 'PATH TO Nightly'
       artifacts:
          public/build:
            path: /home/worker/artifacts/
