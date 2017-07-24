@@ -9,8 +9,8 @@ tasks:
     workerType: '{{ taskcluster.docker.workerType }}'
     priority: lowest
     retries: 5
-    routes:
-           - 'notify.email.<roxana.robotin@softvision.ro>.on-any'
+#    routes:
+#           - 'notify.email.<roxana.robotin@softvision.ro>.on-any'
     extra:
       github:
         events:
@@ -22,6 +22,11 @@ tasks:
       image: node
       env:
            - 'NIGHTLY': 'PATH TO Nightly'
+      artifacts:
+         public/build:
+           path: /home/worker/artifacts/
+           expires: '2017-08-21T07:04:41.184Z'
+           type: directory
       command:
         - /bin/bash
         - '--login'
