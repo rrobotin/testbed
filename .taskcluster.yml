@@ -23,9 +23,10 @@ tasks:
       env:
            NIGHTLY: 'PATH TO Nightly'
       artifacts:
-        name: public/results
-        path: workspace/results
-        type: directory
+         public/results:
+           path: /home/worker/artifacts/
+           expires: '2017-08-21T07:04:41.184Z'
+           type: directory
       command:
         - /bin/bash
         - '--login'

@@ -1,4 +1,10 @@
 
+var bodyCSS = 'body { background-color: #EFEFEF;}';
+var titleCSS = '.title-bar {width: 100%;height: 50px;background-color: #000;color: white;position:absolute; top:0;left:0;text-align:center;font-size: 36px;}';
+var tableCSS = 'table {width: 100%;border: 3px solid grey; border-style: ridge; box-shadow: 5px 5px 3px #888888; padding: 10px; background-color: #000000;}';
+var thCSS = 'th, td {border: 1px solid #737373; border-radius: 1px;}';
+var resultsHeaderCSS = '.results-header {text-align: center;margin-bottom: 10px;color: white;font-size: 24px;border-bottom: 1px solid white;}';
+
 var wrapper = '#wrapper { ' +
     'background-color: #cccccc;' +
     'width: 510px;' +
@@ -18,20 +24,21 @@ var wrapper2 = '#wrapper2 {' +
     'position: relative;' +
     'width: 72px;' +
     'padding: 4px;' +
-	'border: 1px solid #9c2020;' +
-	'margin-left: auto;' +
-    'margin-right: auto;	}';
-	
-var td = 'td {' +
-    'padding: 4px;' +
-	'margin-left: auto;' +
+    'border: 1px solid #9c2020;' +
+    'margin-left: auto;' +
     'margin-right: auto;	}';
 
-var wrapper3 = '#wrapper3 {' +
+var td = 'td {' +
+    'padding: 4px;' +
+    'margin-left: auto;' +
+    'margin-right: auto;	}';
+
+var wrapper3 = '.wrapper3 {' +
     'margin: 2px;' +
-	'border: 1px solid #827979;' +
+    'cursor: pointer;' +
+    'border: 1px solid #827979;' +
     'display: inline-block;' +
-	'background : #aea5a5;' +
+    'background : #f5f5f5;' +
     'min-width: 20px;' +
     'text-align: center; ' +
     'padding: 5px;' +
@@ -40,20 +47,31 @@ var wrapper3 = '#wrapper3 {' +
 
 var container = '#container {' +
     'max-width: 800px;' +
-	'width: 100%;' +
-    'margin: 50px auto 20px auto; }';
-	
+    'width: 100%;' +
+    'margin: 100px auto 20px auto; }';
+
 var results = '#results {' +
-    'max-width: 800px;' +
-    'margin: 0px auto 100px auto;' +
-    'padding-top: 30px;' +
-	'border-top: 1px solid grey; }';
+    'max-width: 778px;' +
+    'margin: 50px auto 100px auto;' +
+    'padding: 10px;' +
+    'border: 3px solid grey;' +
+    'border-style: ridge;' +
+    'box-shadow: 5px 5px px #888888;' +
+    'background-color: #000000;' +
+    'padding: 10px; }';
 
 var logo = '.logo {' +
     'width: 50px;' +
     'height: 50px; }';
 
+var hide = '.hide {display: none; }';
+
 var style = document.createElement('style');
+style.append(bodyCSS);
+style.append(titleCSS);
+style.append(tableCSS);
+style.append(thCSS);
+style.append(resultsHeaderCSS);
 style.append(wrapper);
 style.append(content);
 style.append(wrapper2);
@@ -62,14 +80,21 @@ style.append(td);
 style.append(container);
 style.append(results);
 style.append(logo);
+style.append(hide);
 document.body.appendChild(style);
 
+//create Title
+var titleBar = document.createElement('div');
+titleBar.className = 'title-bar';
+titleBar.innerHTML = 'TITLE';
+document.body.appendChild(titleBar);
 
 //create Table
 var containerTable = document.createElement('table');
 var resultDivs = document.createElement('div');
 containerTable.id = 'container';
 resultDivs.id = 'results';
+resultDivs.className = 'hide';
 document.body.appendChild(containerTable);
 document.body.appendChild(resultDivs);
 //create Header line
@@ -77,11 +102,22 @@ var containerTR = document.createElement('tr');
 containerTR.id = 'headers';
 containerTable.appendChild(containerTR);
 
+//create Results Header
+var resultsHeader = document.createElement('div');
+resultsHeader.id = 'resultsFor';
+resultsHeader.className = 'results-header';
+resultsHeader.innerHTML = 'RESULTS FOR: ';
+resultDivs.appendChild(resultsHeader);
+//create Results Header Text
+var resultsHeaderText = document.createElement('span');
+resultsHeaderText.id = 'resultsForText';
+resultsHeader.appendChild(resultsHeaderText);
+
 //add new empty column
 var containerTD = document.createElement('td');
 containerTR.appendChild(containerTD);
 
-//add Headers 
+//add Headers
 var intro = ['Chrome','Firefox','Edge', 'Nightly'];
 intro.forEach(addHeaders);
 
@@ -95,17 +131,17 @@ addMatrixColumns(intro);
 
 //add test results
 var Input = {'name':'page loaded',
-        'id':0 ,
-        'action':'pass',
-        'status': true,
-        'type':'assert' };
+    'id':0 ,
+    'action':'pass',
+    'status': true,
+    'type':'assert' };
 var Input2 = {
-        'name':'joined room',
-        'id':1,
-        'action':'pass',
-        'status':true,
-        'type':'assert'
-        };
+    'name':'joined room',
+    'id':1,
+    'action':'pass',
+    'status':true,
+    'type':'assert'
+};
 var Input3 = {
     'name':'joined room',
     'id':1,
@@ -170,22 +206,22 @@ var Input011 = {
 };
 var Input012 = {
     'name':'Chrome-Chrome, H264',
-        'id':0,
+    'id':0,
     'type':'test'
 };
 var Input013 = {
     'name':'Chrome-Chrome, VP9',
-        'id':0,
+    'id':0,
     'type':'test'
 };
 var Input014 = {
     'name':'Chrome-Chrome, VP8',
-        'id':0,
+    'id':0,
     'type':'test'
 };
 var Input015 = {
     'name':'Firefox-Chrome, VP9',
-        'id':0,
+    'id':0,
     'type':'test'
 };
 
@@ -240,31 +276,31 @@ processResult(inputs);
 
 function addHeaders(item) {
 
-	var newColumn = document.createElement('th');
+    var newColumn = document.createElement('th');
 
     var img = document.createElement('img');
     img.setAttribute('src', 'images/'+item.toLowerCase()+'.png');
     img.setAttribute('class', 'logo');
     newColumn.appendChild(img);
 
-	var headerLine = document.getElementById('headers');
-	headerLine.appendChild(newColumn);	
+    var headerLine = document.getElementById('headers');
+    headerLine.appendChild(newColumn);
 }
 
 function addLineHeaders(item) {
 
-	var newLine = document.createElement('tr');
-	newLine.id = item;
-	var newColumn = document.createElement('td');
+    var newLine = document.createElement('tr');
+    newLine.id = item;
+    var newColumn = document.createElement('td');
     var img = document.createElement('img');
     img.setAttribute('src', 'images/'+item.toLowerCase()+'.png');
     img.setAttribute('class', 'logo');
     newColumn.appendChild(img);
 
-	newLine.appendChild(newColumn);
-	
-	var table = document.getElementById('container');
-	table.appendChild(newLine);	
+    newLine.appendChild(newColumn);
+
+    var table = document.getElementById('container');
+    table.appendChild(newLine);
 }
 
 var nameAttr = '';
@@ -311,10 +347,10 @@ function myFunction(item) {
             childDiv.setAttribute('name', name);
         }
 
-        childDiv.id = 'wrapper3';
+        childDiv.className = 'wrapper3';
 
-        //onClick
-        //childDiv.addEventListener("click", displayElement(name));
+        var browserID = id;
+        childDiv.onclick = function() {displayElement(name, browserID, item.name);};
 
         currentDIV.appendChild(childDiv);
         return;
@@ -330,7 +366,7 @@ function myFunction(item) {
             testCaseContainerDiv = document.createElement('div');
             testCaseContainerDiv.id = ( nameAttr + '-tcstep-' + id);
             testCaseContainerDiv.setAttribute('name', nameAttr + '-tcstep');
-            testCaseContainerDiv.style.display = 'none';
+            testCaseContainerDiv.className = 'hide';
             resultChildContainerDiv.appendChild(testCaseContainerDiv);
         }
 
@@ -339,9 +375,11 @@ function myFunction(item) {
         if (item.action == 'pass') {
             resultChildDiv.style.backgroundColor = 'green';
         } else {
-            resultChildDiv.style.backgroundColor = 'red';
+            resultChildDiv.style.backgroundColor = '#E10000';
         }
-        resultChildDiv.id = 'wrapper3';
+        resultChildDiv.style.color = 'white';
+        resultChildDiv.className = 'wrapper3';
+        resultChildDiv.onclick = function() {console.log(item);};
         resultChildDiv.appendChild(newContent);
         testCaseContainerDiv.appendChild(resultChildDiv);
     }
@@ -361,10 +399,45 @@ function processResult(list){
     }
 }
 
-function displayElement(elementId){
-    var divToDisplay = document.getElementById(elementId + '-tcstep-' + id);
+var currentDisplayedElement;
+function displayElement(elementId, id, fullName){
 
-    divToDisplay.style.display = 'inline';
+    var idString = elementId + '-tcstep-' + id;
+
+    var entireResultsDiv = document.getElementById('results');
+
+    var resultsForText = document.getElementById('resultsForText');
+    resultsForText.innerHTML = fullName;
+
+    //if nothing was showing before, just show the new.
+    if(typeof currentDisplayedElement === 'undefined' || currentDisplayedElement === ''){
+        var divToDisplay = document.getElementById(idString);
+        currentDisplayedElement = idString;
+        divToDisplay.className = '';
+
+        entireResultsDiv.className = '';
+    }
+    //this is already displayed, so hide it.
+    else if(currentDisplayedElement === idString){
+        var hideThis = document.getElementById(currentDisplayedElement);
+        hideThis.className = 'hide';
+        currentDisplayedElement = '';
+
+        entireResultsDiv.className = 'hide';
+    }
+    //hide the old, show the new
+    else{
+        var hideThis = document.getElementById(currentDisplayedElement);
+        hideThis.className = 'hide';
+        currentDisplayedElement = '';
+
+        var divToDisplay = document.getElementById(idString);
+        currentDisplayedElement = idString;
+        divToDisplay.className = '';
+
+        entireResultsDiv.className = '';
+    }
+
 }
 
 function addMatrixColumns(broswers){
