@@ -45,7 +45,7 @@ tasks:
           echo $PATH &&
           echo $NIGHTLY &&
           pwd &&
-          $NIGHTLY=/repo/firefox/ &&
+          //$NIGHTLY=/repo/firefox/ &&
           echo $NIGHTLY &&
           node apprtcTestReports.js
     metadata:
