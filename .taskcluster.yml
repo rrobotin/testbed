@@ -38,7 +38,9 @@ tasks:
           git checkout {{event.head.sha}} &&
           npm install . &&
           cd &&
-          wget https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-56.0a1.en-US.linux-x86_64.tar.bz2
+          pwd &&
+          wget https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-56.0a1.en-US.linux-x86_64.tar.bz2 &&
+          pwd &&
           node apprtcTestReports.js
     metadata:
       name: 'testBed'
