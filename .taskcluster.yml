@@ -21,7 +21,7 @@ tasks:
       maxRunTime: 3600
       image: node
       env:
-           NIGHTLY: 'PATH TO Nightly'
+           NIGHTLY: '/roxana/roxana'
       artifacts:
          public/results:
            path: /home/worker/artifacts/
@@ -40,7 +40,11 @@ tasks:
           pwd &&
           wget http://archive.mozilla.org/pub/firefox/nightly/latest-date/firefox-56.0a1.en-US.linux-x86_64.tar.bz2 &&
           ls -latr &&
+          tar xjvf  firefox-56.0a1.en-US.linux-x86_64.tar.bz2 &&
+          ls -latr &&
           echo $PATH &&
+          echo $NIGHTLY &&
+          pwd &&
           node apprtcTestReports.js
     metadata:
       name: 'testBed'
