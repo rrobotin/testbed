@@ -43,6 +43,7 @@ function buildDriver(browser, options) {
   profile.setPreference('media.navigator.permission.disabled', true);
   profile.setPreference('xpinstall.signatures.required', false);
 
+  console.log("PLATFORM:" + os.platform());
   var firefoxOptions = new firefox.Options()
       .setProfile(profile);
   if (options.firefoxpath) {
