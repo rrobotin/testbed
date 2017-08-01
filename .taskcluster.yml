@@ -24,8 +24,7 @@ tasks:
            NIGHTLY: '/roxana/roxana'
       artifacts:
          public/results:
-           path: /home/worker/artifacts/
-           expires: '2017-08-21T07:04:41.184Z'
+           path: /repo/roxana
            type: directory
       command:
         - /bin/bash
@@ -45,6 +44,7 @@ tasks:
           echo $PATH &&
           echo $NIGHTLY &&
           pwd &&
+          mkdir roxana &&
           echo $NIGHTLY &&
           node apprtcTestReports.js
     metadata:
