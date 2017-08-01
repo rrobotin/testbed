@@ -45,6 +45,9 @@ tasks:
           echo $NIGHTLY &&
           pwd &&
           mkdir roxana &&
+          cd roxana &&
+          touch test.txt &&
+          cd ../ &&
           echo $NIGHTLY &&
           node apprtcTestReports.js
     metadata:
