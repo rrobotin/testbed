@@ -46,7 +46,7 @@ tasks:
           touch test.txt &&
           cd ../ &&
           echo "locate firefox" &&
-          locate firefox &&
+          whereis firefox &&
           node runTest.js &&
           node formatResults.js
     metadata:
