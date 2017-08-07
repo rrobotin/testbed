@@ -249,7 +249,6 @@ tape('Firefox-Chrome, VP9', function(t) {
 
 
 function getTHEFlist() {
-    ///return de promise.all
     return new Promise(function ( resolve, reject){
         try {
             console.log('ON START TRY');

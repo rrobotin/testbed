@@ -51,7 +51,7 @@ function buildDriver(browser, options) {
   } else if (!grid) {
     if (os.platform() === 'win32') {
       // TODO: why does geckodriver not find this (fairly standard) path?
-      firefoxOptions.setBinary(process.env.NIGHTLY);
+      firefoxOptions.setBinary('C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe');
     } else if (os.platform() == 'linux' && options.bver) {
       firefoxOptions.setBinary('browsers/bin/firefox-' + options.bver);
     }

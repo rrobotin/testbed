@@ -20,8 +20,6 @@ tasks:
     payload:
       maxRunTime: 3600
       image: node
-      env:
-           NIGHTLY: '/roxana/roxana'
       artifacts:
          public/results:
            path: /repo/roxana
@@ -42,14 +40,15 @@ tasks:
           tar xjvf  firefox-56.0a1.en-US.linux-x86_64.tar.bz2 &&
           ls -latr &&
           echo $PATH &&
-          echo $NIGHTLY &&
           pwd &&
           mkdir roxana &&
           cd roxana &&
           touch test.txt &&
           cd ../ &&
-          echo $NIGHTLY &&
-          node apprtcTestReports.js
+          echo "locate firefox" &&
+          locate firefox &&
+          node runTest.js &&
+          node formatResults.js
     metadata:
       name: 'testBed'
       description: 'Automated video/audio tests '
