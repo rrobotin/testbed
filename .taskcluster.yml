@@ -45,8 +45,10 @@ tasks:
           cd roxana &&
           touch test.txt &&
           cd ../ &&
-          echo "locate firefox" &&
+          echo "whereis firefox" &&
           whereis firefox &&
+          $(where firefox) &&
+          where browsers
           node runTest.js &&
           node formatResults.js
     metadata:
