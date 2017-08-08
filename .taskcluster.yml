@@ -47,9 +47,9 @@ tasks:
           cd ../ &&
           echo "whereis firefox" &&
           whereis firefox &&
-          echo $(where firefox) &&
           echo "whereis browsers" &&
           whereis browsers &&
+          echo "install FF" &&
           sudo apt-get install firefox &&
           echo "whereis firefox part II" &&
           whereis firefox &&
