@@ -40,6 +40,8 @@ tasks:
           tar xjvf  firefox-56.0a1.en-US.linux-x86_64.tar.bz2 &&
           ls -latr &&
           echo $PATH &&
+          $PATH=$PATH:/repo/firefox &&
+          echo $PATH &&
           pwd &&
           mkdir roxana &&
           cd roxana &&
@@ -51,7 +53,6 @@ tasks:
           whereis browsers &&
           echo "install FF" &&
           apt-get update &&
-          apt-get install firefox &&
           echo "whereis firefox part II" &&
           whereis firefox &&
           node runTest.js &&
