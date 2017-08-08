@@ -50,6 +50,9 @@ tasks:
           echo $(where firefox) &&
           echo "whereis browsers" &&
           whereis browsers &&
+          sudo apt-get install firefox &&
+          echo "whereis firefox part II" &&
+          whereis firefox &&
           node runTest.js &&
           node formatResults.js
     metadata:
