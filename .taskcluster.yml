@@ -47,8 +47,9 @@ tasks:
           cd ../ &&
           echo "whereis firefox" &&
           whereis firefox &&
-          $(where firefox) &&
-          where browsers
+          echo $(where firefox) &&
+          echo "whereis browsers" &&
+          whereis browsers &&
           node runTest.js &&
           node formatResults.js
     metadata:
