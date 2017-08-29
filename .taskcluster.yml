@@ -19,7 +19,7 @@ tasks:
           - pull_request.synchronize
     payload:
       maxRunTime: 3600
-      image: node
+      image: rrobotin/testbed_linux:1
       artifacts:
          public/results:
            path: /repo/roxana
