@@ -19,7 +19,7 @@ tasks:
           - pull_request.synchronize
     payload:
       maxRunTime: 3600
-      image: rrobotin/testbed_linux:3
+      image: rrobotin/testbed_linux:4
       artifacts:
          public/results:
            path: /repo/roxana
@@ -37,20 +37,13 @@ tasks:
           git checkout {{event.head.sha}} &&
           npm install . &&
           pwd &&
-          wget http://archive.mozilla.org/pub/firefox/nightly/latest-date/firefox-56.0a1.en-US.linux-x86_64.tar.bz2 &&
-          ls -latr &&
-          tar xjvf  firefox-56.0a1.en-US.linux-x86_64.tar.bz2 &&
-          ls -latr &&
-          echo $PATH &&
-          $PATH=$PATH:/repo/firefox &&
-          echo $PATH &&
-          pwd &&
           mkdir roxana &&
           cd roxana &&
           touch test.txt &&
           cd ../ &&
-          echo "whereis firefox" &&
-          whereis firefox &&
+          echo "which firefox" &&
+          which firefox &&
+          which google-chrome &&
           echo "whereis browsers" &&
           whereis browsers &&
           echo "install FF" &&
