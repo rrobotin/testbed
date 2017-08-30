@@ -44,7 +44,6 @@ tasks:
           echo $PATH &&
           pwd &&
           mkdir roxana &&
-          ls -latr &&
           cd roxana &&
           touch test.txt &&
           cd ../ &&
