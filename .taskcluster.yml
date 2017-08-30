@@ -29,6 +29,8 @@ tasks:
         - '--login'
         - '-c'
         - >-
+          whoami &&
+          git --version &&
           git clone {{event.head.repo.url}} repo &&
           cd repo &&
           git config advice.detachedHead false &&
