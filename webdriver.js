@@ -72,6 +72,8 @@ function buildDriver(browser, options) {
   if (options.headless) {
     chromeOptions.addArguments('headless');
     chromeOptions.addArguments('disable-gpu');
+    chromeOptions.addArguments('--enable-logging');
+    chromeOptions.addArguments('--v=0');
   }
 
   if (options.noSandbox) {
