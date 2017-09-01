@@ -49,7 +49,8 @@ tasks:
           echo "install FF" &&
           apt-get update &&
           apt-get install xvfb -y &&
-          Xvfb :99 -ac &; export DISPLAY=:99 &&
+          Xvfb :99 -ac &&
+          export DISPLAY=:99 &&
           echo "whereis firefox part II" &&
           whereis firefox &&
           node runTest.js &&
