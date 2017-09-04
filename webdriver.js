@@ -24,6 +24,9 @@ if (os.platform() === 'win32') {
 function buildDriver(browser, options) {
   // Firefox options.
   var profile;
+
+  console.log("browser:" + browser);
+  console.log("options:" + JSON.stringify(options));
   options = options || {};
   if (options.h264) {
     // contains gmp-gmpopenh264/1.6 which may contain openh264 binary.
@@ -67,9 +70,11 @@ function buildDriver(browser, options) {
       .addArguments('no-process-singleton-dialog')
       .addArguments('mute-audio');
   if (options.experimental !== false) {
+      console.log("options.experimental:" + options.experimental);
     chromeOptions.addArguments('enable-experimental-web-platform-features');
   }
   if (options.headless) {
+      console.log("options.headless:" + options.headless);
     chromeOptions.addArguments('headless');
     chromeOptions.addArguments('disable-gpu');
     chromeOptions.addArguments('enable-logging');
@@ -83,6 +88,7 @@ function buildDriver(browser, options) {
   if (options.chromepath) {
     chromeOptions.setChromeBinaryPath(options.chromepath);
   } else if (!grid && os.platform() === 'linux' && options.bver) {
+      console.log("options.bver:" + options.bver);
     chromeOptions.setChromeBinaryPath('browsers/bin/chrome-' + options.bver);
   }
 
