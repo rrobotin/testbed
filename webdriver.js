@@ -131,6 +131,11 @@ function buildDriver(browser, options) {
   var safariOptions = new safari.Options();
   safariOptions.setTechnologyPreview(options.bver === 'TechnologyPreview');
 
+    console.log("chromeOptions:" + JSON.stringify(chromeOptions));
+    console.log("firefoxOptions:" + JSON.stringify(firefoxOptions));
+    console.log("edgeOptions:" + JSON.stringify(edgeOptions));
+    console.log("safariOptions:" + JSON.stringify(safariOptions));
+
   var driver = new webdriver.Builder()
       .setFirefoxOptions(firefoxOptions)
       .setChromeOptions(chromeOptions)
