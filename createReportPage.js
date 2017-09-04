@@ -271,7 +271,7 @@ addMatrixColumns(intro);
 var inputs = {};
 
 //read the unprocessed results
-fs.readFile('output.txt', 'utf8', function (err,data) {
+fs.readFile('roxana/output.txt', 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
     }
