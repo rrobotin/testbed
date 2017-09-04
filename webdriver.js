@@ -73,13 +73,13 @@ function buildDriver(browser, options) {
       console.log("options.experimental:" + options.experimental);
     chromeOptions.addArguments('enable-experimental-web-platform-features');
   }
-  if (options.headless) {
-      console.log("options.headless:" + options.headless);
+
+    console.log("options.headless:" + options.headless);
     chromeOptions.addArguments('headless');
     chromeOptions.addArguments('disable-gpu');
     chromeOptions.addArguments('enable-logging');
     chromeOptions.addArguments('v=2');
-  }
+
 
   if (options.noSandbox) {
     chromeOptions.addArguments('no-sandbox');
