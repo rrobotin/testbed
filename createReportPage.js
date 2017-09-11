@@ -1,146 +1,5 @@
-//add test results
-/*var Input = {'name':'page loaded',
- 'id':0 ,
- 'action':'pass',
- 'status': true,
- 'type':'assert' };
- var Input2 = {
- 'name':'joined room',
- 'id':1,
- 'action':'pass',
- 'status':true,
- 'type':'assert'
- };
- var Input3 = {
- 'name':'joined room',
- 'id':1,
- 'action':'pass',
- 'status':true,
- 'type':'assert'
- };
- var Input4 = {
- 'name':'joined room',
- 'id':1,
- 'action':'pass',
- 'status':true,
- 'type':'assert'
- };
- var Input5 = {
- 'name':'joined room',
- 'id':1,
- 'action':'pass',
- 'status':true,
- 'type':'assert'
- };
 
- var Input01 = {
- 'name':'Chrome-Chrome',
- 'id':0,
- 'type':'test'
- };
 
- var Input02 = {
- 'name':'Chrome-Firefox',
- 'id':0,
- 'type':'test'
- };
-
- var Input03 = {
- 'name':'Firefox-Firefox',
- 'id':0,
- 'type':'test'
- };
-
- var Input04 = {
- 'name':'Edge-Edge',
- 'id':0,
- 'type':'test'
- };
-
- var Input041 = {
- 'name':'Edge-Chrome, VP8',
- 'id':0,
- 'type':'test'
- };
- var Input042 = {
- 'name':'Edge-Firefox',
- 'id':0,
- 'type':'test'
- };
-
- var Input011 = {
- 'name':'Chrome-Chrome, icetransports=relay',
- 'id':0,
- 'type':'test'
- };
- var Input012 = {
- 'name':'Chrome-Chrome, H264',
- 'id':0,
- 'type':'test'
- };
- var Input013 = {
- 'name':'Chrome-Chrome, VP9',
- 'id':0,
- 'type':'test'
- };
- var Input014 = {
- 'name':'Chrome-Chrome, VP8',
- 'id':0,
- 'type':'test'
- };
- var Input015 = {
- 'name':'Firefox-Chrome, VP9',
- 'id':0,
- 'type':'test'
- };
-
- var Input031 = {
- 'name':'Chrome-Edge, VP9',
- 'id':0,
- 'type':'test'
- };
- var Input016 = {
- 'name':'Firefox-Edge, VP9',
- 'id':0,
- 'type':'test'
- };
- var Input017 = {
- 'name':'Firefox-Chrome, VP941231',
- 'id':0,
- 'type':'test'
- };
- var Input018 = {
- 'name':'Firefox-Edge, VP8',
- 'id':0,
- 'type':'test'
- };
- var Input019 = {
- 'name':'Nightly-Nightly, VP8',
- 'id':0,
- 'type':'test'
- };*/
-/*inputs['Chrome-Chrome'] = [Input01, Input, Input2, Input3, Input4, Input5];
- inputs['Chrome-Firefox'] = [Input02, Input, Input2, Input3, Input4, Input5];
- inputs['Firefox-Firefox'] = [Input03, Input, Input2, Input3, Input4, Input5];
- inputs['Edge-Edge'] = [Input04, Input, Input2, Input3, Input4, Input5];
- inputs['Edge-Chrome, VP8'] = [Input041, Input, Input2, Input3, Input4, Input5];
- inputs['Edge-Chrome, VP9'] = [Input041, Input, Input2, Input3, Input4, Input5];
- inputs['Edge-Firefox'] = [Input042, Input, Input2, Input3, Input4, Input5];
- inputs['Chrome-Chrome, icetransports=relay'] = [Input011, Input, Input2];
- inputs['Chrome-Chrome, H264'] = [Input012, Input3, Input2];
- inputs['Chrome-Chrome, VP8'] = [Input014, Input4, Input2];
- inputs['Chrome-Chrome, VP9'] = [Input013, Input5, Input2];
- inputs['Firefox-Chrome, VP9'] = [Input015, Input5, Input2];
- inputs['Chrome-Edge, VP9'] = [Input031, Input5, Input2];
- inputs['Firefox-Edge, VP9'] = [Input016, Input5, Input2];
- inputs['Firefox-Chrome, VP941231'] = [Input017, Input5, Input2];
- inputs['Firefox-Edge, VP8'] = [Input018, Input5, Input2];
- inputs['Nightly-Nightly, VP8'] = [Input019];*/
-
-fs = require('fs');
-dom = require('node-dom').dom;
-window=dom(page,null,options); //global
-document=window.document;
 
 var bodyCSS = 'body { background-color: #EFEFEF;}';
 var titleCSS = '.title-bar {width: 100%;height: 50px;background-color: #000;color: white;position:absolute; top:0;left:0;text-align:center;font-size: 36px;}';
@@ -240,6 +99,7 @@ resultDivs.id = 'results';
 resultDivs.className = 'hide';
 document.body.appendChild(containerTable);
 document.body.appendChild(resultDivs);
+
 //create Header line
 var containerTR = document.createElement('tr');
 containerTR.id = 'headers';
@@ -268,29 +128,18 @@ intro.forEach(addHeaders);
 intro.forEach(addLineHeaders);
 addMatrixColumns(intro);
 
-var inputs = {};
 
-//read the unprocessed results
-fs.readFile('roxana/output.txt', 'utf8', function (err,data) {
-    if (err) {
-        return console.log(err);
-    }
-    setInputs(data);
-});
 
-processResult(inputs);
 
 
 
 function addHeaders(item) {
 
     var newColumn = document.createElement('th');
-
     var img = document.createElement('img');
     img.setAttribute('src', 'images/'+item.toLowerCase()+'.png');
     img.setAttribute('class', 'logo');
     newColumn.appendChild(img);
-
     var headerLine = document.getElementById('headers');
     headerLine.appendChild(newColumn);
 }
@@ -304,9 +153,7 @@ function addLineHeaders(item) {
     img.setAttribute('src', 'images/'+item.toLowerCase()+'.png');
     img.setAttribute('class', 'logo');
     newColumn.appendChild(img);
-
     newLine.appendChild(newColumn);
-
     var table = document.getElementById('container');
     table.appendChild(newLine);
 }
@@ -316,11 +163,10 @@ function setnameAttr(value){
     nameAttr = value;
 }
 
-function setInputs(value){
-    inputs = value;
-}
+processResult(inputs);
 
-function myFunction(item) {
+
+function createHtmlReport(item) {
 
 
     var split;
@@ -407,7 +253,7 @@ function setId(value){
 function processResult(list){
     var k;
     for ( k in Object.keys(list)) {
-        list[Object.keys(list)[k]].forEach(myFunction);
+        list[Object.keys(list)[k]].forEach(createHtmlReport);
     }
 }
 
@@ -463,7 +309,6 @@ function addMatrixColumns(broswers){
             currentTD = document.createElement('td');
             currentTD.id = tagID;
             currentTR.appendChild(currentTD);
-
             containerDIV = document.createElement('div');
             containerDIV.id = tagID + '-container';
             containerDIV.className = 'wrapper2';
@@ -471,17 +316,3 @@ function addMatrixColumns(broswers){
         }
     }
 }
-
-
-function getFormattedResult() {
-    return new Promise(function ( resolve, reject){
-        try {
-        resolve(document);
-        }
-        catch(err) {
-            reject("Error in promise" + err)
-        }
-    });
-}
-
-module.exports = getFormattedResult;

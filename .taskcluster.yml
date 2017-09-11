@@ -51,7 +51,7 @@ tasks:
           echo "whereis firefox part II" &&
           whereis firefox &&
           node runTest.js &&
-          node formatResults.js
+          node processReportInput.js
     metadata:
       name: 'testBed'
       description: 'Automated video/audio tests '
