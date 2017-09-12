@@ -33,8 +33,6 @@ function addResult(row){
         listOfObjects[Object.keys(listOfObjects)[Object.keys(listOfObjects).length - 1]]
             .push(result);
     }
-    console.log('rezultat procesat!');
-    //console.log('rezultat procesat!  ' + JSON.stringify(listOfObjects));
     return listOfObjects;
 }
 
@@ -43,7 +41,7 @@ var list  = {};
 
 tape.createStream({ objectMode: true }).on('data', function (row) {
     console.log('CREATE STREAM');
-    addResult(row);///promise individual
+    addResult(row);
 })
 
 function setList(x) {
@@ -248,7 +246,7 @@ tape('Firefox-Chrome, VP9', function(t) {
 
 
 
-function getTHEFlist() {
+function getTheFinalList() {
     return new Promise(function ( resolve, reject){
         try {
             console.log('ON START TRY');
@@ -267,4 +265,4 @@ function getTHEFlist() {
     });
 }
 
-module.exports = getTHEFlist;
+module.exports = getTheFinalList;

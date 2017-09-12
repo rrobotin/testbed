@@ -2,7 +2,7 @@ var fs = require('fs');
 var fileToUpdate = 'createReportPage.js';
 
 //read the unprocessed results
-fs.readFile('roxana/output.txt', 'utf8', function (err,data) {
+fs.readFile('reports/appRtcOutput.txt', 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
     }
@@ -15,7 +15,7 @@ fs.readFile('roxana/output.txt', 'utf8', function (err,data) {
 function append (inputs) {
     var body = fs.readFileSync(fileToUpdate).toString();
     body = body.split('\n');
-    body.splice(0,0, 'var inputs = ' + inputs);
+    body.splice(0,0, 'var input = ' + inputs);
     var output = body.join('\n');
     fs.writeFileSync(fileToUpdate, output);
 }

@@ -163,7 +163,7 @@ function setnameAttr(value){
     nameAttr = value;
 }
 
-processResult(inputs);
+processResult(input);
 
 
 function createHtmlReport(item) {
