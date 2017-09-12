@@ -88,7 +88,7 @@ document.body.appendChild(style);
 //create Title
 var titleBar = document.createElement('div');
 titleBar.className = 'title-bar';
-titleBar.innerHTML = 'TITLE';
+titleBar.innerHTML = 'WebRTC Test Reports';
 document.body.appendChild(titleBar);
 
 //create Table

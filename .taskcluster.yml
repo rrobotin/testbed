@@ -38,10 +38,11 @@ tasks:
           npm install . &&
           pwd &&
           mkdir reports &&
+          ls -all &&
           apt-get update &&
           node runTest.js &&
           node processReportInput.js &&
-          cp createReportPage.js /reports
+          cp createReportPage.js reports/ &&
           cd reports &&
           ls -all
     metadata:
