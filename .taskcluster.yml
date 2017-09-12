@@ -22,7 +22,7 @@ tasks:
       image: rrobotin/testbed_linux:4
       artifacts:
          public/results:
-           path: /repo/roxana
+           path: /repo/reports
            type: directory
       command:
         - /bin/bash
@@ -43,6 +43,7 @@ tasks:
           node runTest.js &&
           node processReportInput.js &&
           cp createReportPage.js reports/ &&
+          cp webRTCreports.html reports/ &&
           cd reports &&
           ls -all
     metadata:
