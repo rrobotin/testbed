@@ -44,6 +44,7 @@ tasks:
           node processReportInput.js &&
           cp createReportPage.js reports/ &&
           cp webRTCreports.html reports/ &&
+          cp -r images/ reports/ &&
           cd reports &&
           ls -all
     metadata:
